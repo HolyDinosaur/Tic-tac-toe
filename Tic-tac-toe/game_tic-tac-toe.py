@@ -22,7 +22,7 @@ tux = r"""
   \___)=(___/
 """
 
-print(tux)
+print(Fore.MAGENTA + tux)
 
 # Настройка логирования
 logger = logging.getLogger()
@@ -51,7 +51,9 @@ class Cell:
         if not self.occupied:
             self.symbol = symbol
             self.occupied = True
+            logger.debug(f"Клетка {self.number} занята {symbol}.")
             return True
+        logger.warning(f"Клетка {self.number} уже занята.")
         return False
 
 
@@ -67,10 +69,11 @@ class Board:
         ---------
         {self.cells[6].symbol} | {self.cells[7].symbol} | {self.cells[8].symbol}
         """)
-
+        logger.debug("Выводим доску.")
     def change_cell(self, number, symbol):
         if 1 <= number <= 9:
             return self.cells[number - 1].occupy(symbol)
+        logger.warning(f"Неверный номер ячейки: {cell_number}. Ход не выполнен")
         return False
 
     def check_game_over(self):
@@ -146,11 +149,11 @@ class Game:
     def start_games(self):
         while True:
             self.players.clear()
-            name1 = input("Введите имя первого игрока: ")
+            name1 = input(Fore.CYAN + "Введите имя первого игрока: " + Style.RESET_ALL)
             symbol1 = Fore.RED + 'X'
             self.players.append(Player(name1, symbol1))
 
-            name2 = input("Введите имя второго игрока: ")
+            name2 = input(Fore.CYAN + "Введите имя второго игрока: " + Style.RESET_ALL)
             symbol2 = Fore.GREEN + 'O'
             self.players.append(Player(name2, symbol2))
 
