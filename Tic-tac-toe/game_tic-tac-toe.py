@@ -28,12 +28,12 @@ print(Fore.MAGENTA + tux)
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-debug_handler = logging.FileHandler("game_tic-tac-toe-debug_info.log", mode='w')
+debug_handler = logging.FileHandler("./log/game_tic-tac-toe-debug_info.log", mode='w')
 debug_handler.setLevel(logging.DEBUG)
 debug_format = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 debug_handler.setFormatter(debug_format)
 
-warning_handler = logging.FileHandler("game_tic-tac-toe-warnings_errors.log", mode='w')
+warning_handler = logging.FileHandler("./log/game_tic-tac-toe-warnings_errors.log", mode='w')
 warning_handler.setLevel(logging.WARNING)
 warning_handler.setFormatter(debug_format)
 
